@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;900&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      color: #212529;
+    }
+    html, body {
+      font-size: 16px;
+      background: #f8f9fa;
+    }
+    .d-flex { display: flex; }
+    .main-wrapper {
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    .word-wrapper {
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+    }
+    .word {
+      font-weight: 900 !important;
+      padding: 2rem;
+      font-size: 4rem;
+      border: 1px solid #dee2e6;
+      border-radius: .5rem;
+      cursor: pointer;
+      background: #ffffff;
+    }
+    .open {
+      animation-duration: 1s;
+      animation-name: slider;
+    }
+    .btn-wrapper {
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .btn-wrapper > button {
+      border: 1px solid #0d6efd;
+      border-radius: .5rem;
+      width: 50%;
+      font-size: 3.5rem;
+      background: #0d6efd;
+      cursor: pointer;
+      color: #ffffff;
+      text-transform: uppercase;
+      transition: background 500ms;
+    }
+    .btn-wrapper > button:hover {
+      background: #0b5ed7;
+    }
+
+    @keyframes slider {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <body>
+    <div class="main-wrapper d-flex">
+      <div class="word-wrapper d-flex">
+        <div id="word" class="word close" onclick="showInfo()"></div>
+      </div>
+      <div class="btn-wrapper d-flex">
+        <button type="button" onclick="getNextWord()">next</button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    let currentWord = {}
+
+    function setRandomWord() {
+      currentWord = { ...WORDS[Math.floor(Math.random() * WORDS.length)] }
+    }
+
+    function getNextWord() {
+      setRandomWord()
+      const el = document.getElementById('word')
+      el.innerHTML = currentWord.translate
+      el.classList.add('close')
+      el.classList.remove('open')
+    }
+
+    function showInfo() {
+      const el = document.getElementById('word')
+      el.innerHTML = el.classList.contains('close') ? currentWord.word : currentWord.translate
+      el.classList.toggle('close')
+      el.classList.toggle('open')
+    }
+
+    const WORDS = [
+    {
+        word: "arise / arose / arisen",
+        translate: "виникати, з'являтися"
+    },
+    {
+        word: "awake / прокинувся / awoken",
+        translate: "будити, пробуджуватися"
+    },
+    {
+        word: "be / was,were / been",
+        translate: "бути"
+    },
+    {
+        word: "bear / bore / born",
+        translate: "народжувати, приносити"
+    },
+    {
+        word: "beat / beat / beaten",
+        translate: "бити"
+    },
+    {
+        word: "become / became / become",
+        translate: "ставати"
+    },
+    {
+        word: "begin / began / begun",
+        translate: "починати(ся)"
+    },
+    {
+        word: "bend / bent / bent",
+        translate: "гнути, згинати"
+    },
+    {
+        word: "bind / bound / bound",
+        translate: "пов'язувати"
+    },
+    {
+        word: "bite / bit / bitten",
+        translate: "кусати(ся)"
+    },
+    {
+        word: "bleed / bled / bled",
+        translate: "кровоточити"
+    },
+    {
+        word: "blow / blew / blown",
+        translate: "дути"
+    },
+    {
+        word: "break / broke / broken",
+        translate: "ламати(ся)"
+    },
+    {
+        word: "breed / bred / bred",
+        translate: "виховувати"
+    },
+    {
+        word: "bring / brought / brought",
+        translate: "приносити"
+    },
+    {
+        word: "build / built / built",
+        translate: "будувати"
+    },
+    {
+        word: "burn / burnt / burnt",
+        translate: "горіти, палити"
+    },
+    {
+        word: "burst / burst / burst",
+        translate: "вибухнути, підривати(ся)"
+    },
+    {
+        word: "buy / bought / bought",
+        translate: "купувати"
+    },
+    {
+        word: "cast / cast / cast",
+        translate: "кинути, лити (метал)"
+    },
+    {
+        word: "catch / caught / caught",
+        translate: "ловити, схоплювати"
+    },
+    {
+        word: "choose / chose / chosen",
+        translate: "вибирати, підбирати"
+    },
+    {
+        word: "come / came / come",
+        translate: "приходити"
+    },
+    {
+        word: "cost / cost / cost",
+        translate: "коштувати"
+    },
+    {
+        word: "cut / cut / cut",
+        translate: "різати"
+    },
+    {
+        word: "dig / dug / dug",
+        translate: "рити, копати"
+    },
+    {
+        word: "do / did / done",
+        translate: "робити"
+    },
+    {
+        word: "draw / drew / drawn",
+        translate: "малювати, тягти"
+    },
+    {
+        word: "dream / dreamt / dreamt",
+        translate: "мріяти, снитися"
+    },
+    {
+        word: "drink / drank / drunk",
+        translate: "пити"
+    },
+    {
+        word: "drive / drove / driven",
+        translate: "водити"
+    },
+    {
+        word: "eat / ate / eaten",
+        translate: "є"
+    },
+    {
+        word: "fall / fell / fallen",
+        translate: "падати"
+    },
+    {
+        word: "feed / fed / fed",
+        translate: "годувати"
+    },
+    {
+        word: "feel / felt / felt",
+        translate: "відчувати"
+    },
+    {
+        word: "fight / fought / fought",
+        translate: "боротися"
+    },
+    {
+        word: "find / found / found",
+        translate: "знаходити"
+    },
+    {
+        word: "fit / fit / fit",
+        translate: "підходити за розміром"
+    },
+    {
+        word: "fly / flew / flown",
+        translate: "літати"
+    },
+    {
+        word: "forget / forgot / forgotten",
+        translate: "забувати"
+    },
+    {
+        word: "forgive / forgave / forgiven",
+        translate: "пробачати"
+    },
+    {
+        word: "freeze / froze / frozen",
+        translate: "замерзати"
+    },
+    {
+        word: "get / got / got",
+        translate: "отримувати"
+    },
+    {
+        word: "give / gave / given",
+        translate: "давати"
+    },
+    {
+        word: "go / went / gone",
+        translate: "іти, ходити"
+    },
+    {
+        word: "grow / росло / grown",
+        translate: "рости"
+    },
+    {
+        word: "hang / hung / hung",
+        translate: "висіти, розвішувати"
+    },
+    {
+        word: "have / had / had",
+        translate: "мати"
+    },
+    {
+        word: "hear / heard / heard",
+        translate: "чути"
+    },
+    {
+        word: "hide / hid / hidden",
+        translate: "ховати"
+    },
+    {
+        word: "hit / hit / hit",
+        translate: "потрапляти в ціль"
+    },
+    {
+        word: "hold / held / held",
+        translate: "тримати"
+    },
+    {
+        word: "hurt / hurt / hurt",
+        translate: "поранити, пошкодити"
+    },
+    {
+        word: "keep / kept / kept",
+        translate: "тримати, зберігати"
+    },
+    {
+        word: "kneel / knelt / knelt",
+        translate: "ставати на коліна"
+    },
+    {
+        word: "knit / knit / knit",
+        translate: "в'язати (спицями)"
+    },
+    {
+        word: "know / knew / known",
+        translate: "знати"
+    },
+    {
+        word: "lay / laid / laid",
+        translate: "класти, покласти"
+    },
+    {
+        word: "lead / led / led",
+        translate: "вести, очолювати"
+    },
+    {
+        word: "lean / leant / leant",
+        translate: "нахилятися"
+    },
+    {
+        word: "learn / learnt / learnt",
+        translate: "вчити"
+    },
+    {
+        word: "leave / left / left",
+        translate: "залишати, покидати"
+    },
+    {
+        word: "lend / lent / lent",
+        translate: "займати, позичати"
+    },
+    {
+        word: "let / let / let",
+        translate: "дозволяти"
+    },
+    {
+        word: "lie / lay / lain",
+        translate: "лежати"
+    },
+    {
+        word: "light / lit / lit",
+        translate: "висвітлювати, запалювати"
+    },
+    {
+        word: "lose / lost / lost",
+        translate: "втрачати"
+    },
+    {
+        word: "make / made / made",
+        translate: "робити"
+    },
+    {
+        word: "mean / meant / meant",
+        translate: "значити"
+    },
+    {
+        word: "meet / met / met",
+        translate: "зустрічати"
+    },
+    {
+        word: "mistake / невірно розумів / mistaken",
+        translate: "помилятися"
+    },
+    {
+        word: "pay / paid / paid",
+        translate: "платити"
+    },
+    {
+        word: "put / put / put",
+        translate: "класти, ставити"
+    },
+    {
+        word: "read / read / read",
+        translate: "читати"
+    },
+    {
+        word: "ride / rode / ridden",
+        translate: "їхати верхи"
+    },
+    {
+        word: "ring / rang / rung",
+        translate: "дзвонити, дзвеніти"
+    },
+    {
+        word: "rise / rose / risen",
+        translate: "підніматися"
+    },
+    {
+        word: "run / ran / run",
+        translate: "бігти"
+    },
+    {
+        word: "say / said / said",
+        translate: "говорити"
+    },
+    {
+        word: "see / saw / seen",
+        translate: "бачити"
+    },
+    {
+        word: "seek / sought / sought",
+        translate: "шукати"
+    },
+    {
+        word: "sell / sold / sold",
+        translate: "продавати"
+    },
+    {
+        word: "send / sent / sent",
+        translate: "посилати"
+    },
+    {
+        word: "set / set / set",
+        translate: "класти, ставити"
+    },
+    {
+        word: "shake / shook / shaken",
+        translate: "трясти"
+    },
+    {
+        word: "shine / світилася / світилася",
+        translate: "світити, сяяти, блищати"
+    },
+    {
+        word: "shoot / shot / shot",
+        translate: "стріляти"
+    },
+    {
+        word: "show / showed / shown",
+        translate: "показувати"
+    },
+    {
+        word: "shrink / shrank / shrunk",
+        translate: "сідати (про матеріал), зменшувати(ся), скорочувати(ся)"
+    },
+    {
+        word: "shut / shut / shut",
+        translate: "закривати"
+    },
+    {
+        word: "sing / sang / sung",
+        translate: "співати"
+    },
+    {
+        word: "sink / опустив / sunk",
+        translate: "тонути"
+    },
+    {
+        word: "sit / sat / sat",
+        translate: "сидіти"
+    },
+    {
+        word: "sleep / slept / slept",
+        translate: "спати"
+    },
+    {
+        word: "smell / smelt / smelt",
+        translate: "нюхати, пахнути"
+    },
+    {
+        word: "slide / slid / slid",
+        translate: "ковзати"
+    },
+    {
+        word: "sow / sowed / sown",
+        translate: "сіяти, засівати"
+    },
+    {
+        word: "smell / smelled / smelled",
+        translate: "нюхати, пахнути"
+    },
+    {
+        word: "speak / spoke / spoken",
+        translate: "говорити"
+    },
+    {
+        word: "spell / spelt / spelt",
+        translate: "вимовляти по буквах"
+    },
+    {
+        word: "spend / spent / spent",
+        translate: "витрачати"
+    },
+    {
+        word: "spill / spilt / spilt",
+        translate: "проливати"
+    },
+    {
+        word: "spit / spat / spat",
+        translate: "плювати"
+    },
+    {
+        word: "split / split / split",
+        translate: "розщеплювати"
+    },
+    {
+        word: "spoil / spoilt / spoilt",
+        translate: "псувати"
+    },
+    {
+        word: "spread / spread / spread",
+        translate: "поширювати(ся)"
+    },
+    {
+        word: "stand / stood / stood",
+        translate: "стояти"
+    },
+    {
+        word: "steal / stole / stolen",
+        translate: "красти"
+    },
+    {
+        word: "stick / stuck / stuck",
+        translate: "приклеювати(ся), застрявати, упиратися"
+    },
+    {
+        word: "sting / stung / stung",
+        translate: "жалити"
+    },
+    {
+        word: "strike / struck / struck",
+        translate: "ударяти, страйкувати"
+    },
+    {
+        word: "strive / strove / striven",
+        translate: "намагатися, прагнути"
+    },
+    {
+        word: "swear / swore / sworn",
+        translate: "давати клятву"
+    },
+    {
+        word: "sweep / swept / swept",
+        translate: "помсти, підмітати"
+    },
+    {
+        word: "swim / swam / swum",
+        translate: "плавати"
+    },
+    {
+        word: "take / took / taken",
+        translate: "брати, взяти"
+    },
+    {
+        word: "teach / taught / taught",
+        translate: "вчити"
+    },
+    {
+        word: "tear / tore / torn",
+        translate: "рвати"
+    },
+    {
+        word: "tell / told / told",
+        translate: "розповідати"
+    },
+    {
+        word: "think / thought / thought",
+        translate: "думати"
+    },
+    {
+        word: "throw / threw / thrown",
+        translate: "кидати"
+    },
+    {
+        word: "understand / understood / understood",
+        translate: "розуміти"
+    },
+    {
+        word: "upset / upset / upset",
+        translate: "перекидати, засмучувати (плани), засмучувати"
+    },
+    {
+        word: "wake / woke / woken",
+        translate: "прокидатися"
+    },
+    {
+        word: "wear / wore / worn",
+        translate: "носити"
+    },
+    {
+        word: "weep / wept / wept",
+        translate: "плакати"
+    },
+    {
+        word: "wet / wet / wet",
+        translate: "мочити, зволожувати"
+    },
+    {
+        word: "win / won / won",
+        translate: "вигравати, перемагати"
+    },
+    {
+        word: "wind / wound / wound",
+        translate: "звиватися, обмотувати, заводити (годинник)"
+    },
+    {
+        word: "write / wrote / written",
+        translate: "писати"
+    }
+  ]
+
+    document.onload = function() {
+      getNextWord()
+    }()
+  </script>
+
+</html>
